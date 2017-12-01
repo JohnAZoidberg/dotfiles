@@ -14,3 +14,5 @@
     - unzip
     - wget
     - "{{ openssh_package_name }}"
+    - openssh
+    - units
