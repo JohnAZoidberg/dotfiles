@@ -7,3 +7,4 @@
     - unzip
     - wget
     - openssh
+    - units
