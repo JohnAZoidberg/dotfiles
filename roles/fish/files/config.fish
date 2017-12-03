@@ -10,3 +10,6 @@ fish_vi_key_bindings
 if test -e ~/.config/fish/xcape.config
     source ~/.config/fish/xcape.config
 end
+
+fundle plugin 'tuvistavie/fish-ssh-agent'
+fundle init
