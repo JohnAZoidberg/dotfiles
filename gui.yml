@@ -4,6 +4,7 @@
     - i3
     - fonts
     - dunst
+    - lightdm
     - chromium
     - firefox
     - xfce-terminal

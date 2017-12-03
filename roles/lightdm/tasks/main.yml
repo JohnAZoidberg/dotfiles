@@ -1,0 +1,12 @@
+---
+- name: Install lightdm
+  become: true
+  package:
+    name: lightdm
+    state: installed
+
+- name: Enable lightdm
+  become: true
+  service:
+    name: lightdm
+    enabled: true
