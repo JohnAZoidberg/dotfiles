@@ -7,7 +7,7 @@
 - name: Enable touch for firefox
   become: true
   file:
-    src: "{{ role_path }}/mozilla-touch.sh"
+    src: "{{ role_path }}/files/mozilla-touch.sh"
     dest: "/etc/profile.d/mozilla-touch.sh"
     state: link
     owner: root
