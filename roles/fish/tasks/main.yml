@@ -16,6 +16,11 @@
     dest: "~/.config/fish/config.fish"
     state: link
 
+- name: Create directory for fish functions
+  file:
+    path: "~/.config/fish/functions"
+    state: directory
+
 - name: Install fundle (fish plugin manager)
   get_url:
     url: https://git.io/fundle
