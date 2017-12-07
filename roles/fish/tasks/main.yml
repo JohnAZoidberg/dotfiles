@@ -25,3 +25,9 @@
   get_url:
     url: https://git.io/fundle
     dest: "~/.config/fish/functions/fundle.fish"
+
+- name: Symlink fish prompt file
+  file:
+    src: "{{ role_path }}/files/fish_prompt.fish"
+    dest: "~/.config/fish/functions/fish_prompt.fish"
+    state: link
