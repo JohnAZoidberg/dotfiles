@@ -1,0 +1,11 @@
+---
+# TODO add LANG=en_US.UTF-8 to /etc/locale.conf as first column
+# and run  localectl set-locale LANG=en_US.UTF-8
+
+# Uncomments en_US.UTF-8 UTF-8 in /etc/locale.gen
+# Runs locale-gen
+- name: Ensure en_US.UTF-8 locale exists/is generated
+  become: yes
+  locale_gen:
+    name: en_US.UTF-8
+    state: present

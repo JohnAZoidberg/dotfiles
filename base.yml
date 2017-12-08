@@ -13,3 +13,5 @@
     - utilities
     - user
     - sudo
+    - locale
+    - timezone
