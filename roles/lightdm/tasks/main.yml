@@ -1,9 +1,11 @@
 ---
-- name: Install lightdm
+- name: Install lightdm and gtk greeter
   become: true
   package:
-    name: lightdm
+    name: "{{ item }}"
     state: installed
+  with_items:
+    lightdm-gtk-greeter
 
 - name: Enable lightdm
   become: true
