@@ -16,3 +16,6 @@
     - "{{ openssh_package_name }}"
     - openssh
     - units
+    - htop
+    - "{{ base_devel_package_name }}"
+    - rsync

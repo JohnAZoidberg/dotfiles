@@ -1,3 +1,5 @@
 openssh_package_name:
   - openssh-client
   - openssh-server
+
+base_devel_package_name: build-essential
