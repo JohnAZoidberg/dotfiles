@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   roles:
+    - xorg
     - i3
     - fonts
     - dunst

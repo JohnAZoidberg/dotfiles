@@ -1,0 +1,13 @@
+---
+# TODO check if works on Debian
+
+- name: Install xorg group
+  become: yes
+  package:
+    name: xorg
+    state: installed
+
+- name: Install video driver
+  package:
+    name: xf86-video-intel
+    state: installed
