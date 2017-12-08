@@ -4,10 +4,11 @@
   package:
     name: "{{ item }}"
   with_items:
-    - NetworkManager
+    - networkmanager
     - network-manager-applet
 
 - name: Enable NetworkManager.service
+  become: yes
   systemd:
     name: NetworkManager
     enabled: true
