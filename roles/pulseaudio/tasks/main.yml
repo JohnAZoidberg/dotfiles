@@ -2,5 +2,8 @@
 - name: Install PulseAudio
   become: true
   package:
-    name: pulseaudio
+    name: "{{ item }}"
     state: installed
+  with_items:
+    - pulseaudio
+    - pavucontrol
