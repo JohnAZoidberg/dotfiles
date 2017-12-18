@@ -19,3 +19,4 @@
     - htop
     - "{{ base_devel_package_name }}"
     - rsync
+    - zip
