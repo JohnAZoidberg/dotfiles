@@ -8,6 +8,12 @@
     state: installed
 
 - name: Install video driver
+  become: yes
   package:
     name: xf86-video-intel
     state: installed
+
+- name: Ensure proper xinitrc in place
+  copy:
+    src: xinitrc
+    dest: "{{ ansible.HOME }}/.xinitrc"
