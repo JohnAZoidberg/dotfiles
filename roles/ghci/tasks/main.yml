@@ -1,0 +1,6 @@
+---
+- name: Symlink ghci config
+  file:
+    src: "{{ role_path }}/files/ghci"
+    dest: "~/.ghci"
+    state: link
