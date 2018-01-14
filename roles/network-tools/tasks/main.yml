@@ -19,3 +19,4 @@
     - "{{ ldns_package_name }}"  # drill
     - iperf
     - gnu-netcat
+    - nmap
