@@ -4,7 +4,7 @@
   package:
     name: "{{ item }}"
   with_items:
-    - networkmanager
+    - "{{ networkmanager_package_name }}"
     - network-manager-applet
 
 - name: Enable NetworkManager.service
