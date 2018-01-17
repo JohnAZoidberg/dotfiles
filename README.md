@@ -3,12 +3,12 @@
 This repository provides several roles and playbooks for installing and configuering tools on Linux.
 
 ## Requirements
-- An installed Linux distribution (Debian or Arch are recommended, others probably fail)
+- An installed Linux distribution (Debian or Arch are recommended, others will probably fail)
 - Ansible
 
 ## Usage
 
-Change the variable in vars.json to fit you. See section Variable for further explanations.
+Copy to `template_vars.json` to `vars.json` and change the variables in vars.json to fit you. See section Variables for further explanations.
 
 To run for example base.yml perform the following command
 '''ansible-playbook base.yml --ask-become-pass --extra-vars "@vars.json"'''
