@@ -19,5 +19,12 @@ To run for example base.yml perform the following command
 - `fish_user`: The user to create and give fish as shell
 - `sudo_user`: The user to create and and as a sudoer
 
+# Playbooks
+base:             Everything essential that I need on all my systems.
+only_config_base: The same essentials configs but without installing any programs
+                  Use this if your distro is not compatible with the installation procedure.
+laptop:           Basic config for touchpad, wifi and backlight.
+gui:              Everything else you would need on a system that is more than a terminal.
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
