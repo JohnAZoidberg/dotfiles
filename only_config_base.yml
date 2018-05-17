@@ -4,6 +4,7 @@
     only_config: true
   roles:
     - fish
+    - bash
     - python
     - git
     - vim

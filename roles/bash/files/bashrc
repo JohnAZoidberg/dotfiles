@@ -1,0 +1,51 @@
+# Contains all aliases from the fish config because functions are incompatible
+
+# Fish-like aliases
+alias l="ls -alh"
+alias ll="ls -alh"
+
+# Faster cd into multiple levels up
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# Inform tmux that UTF-8 is supported even if the locale is wrong
+alias tmux="tmux -u"
+
+# Stay in the folger navigated to when exiting ranger
+alias ranger="ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`"
+
+# hash a path like nixpkgs expects it
+alias nixhash="nix-hash --type sha256 --flat --base32"
+
+# edit and source this config file
+alias vimfish="vim $HOME/.config/fish/config.fish"
+alias srcfish="source $HOME/.config/fish/config.fish"
+
+# easily activate and deactivate redshift
+alias redshift="redshift -O 4000K"
+alias killallredshift="redshift -O 6500K"
+
+alias untarxz="tar -Ipixz -xf"
+alias untargz="tar -Ipigz -xf"
+
+# check a code tree for TODO markers
+alias greptodo="grep -irn TODO"
+
+# Start emacs daemon and launch in folder above (because of direnv)
+alias startemacs="emacs --daemon; emacsclient -cn .."
+# Open file in emacs if daemon is running. Open in vim if not
+alias vime="emacsclient -n -a=vim"
+# Kill running emacs
+alias killemacs='emacsclient -e "(kill-emacs)"'
+
+# Use default colorscheme in httpie
+# I have no idea why it has to be specifiedd
+alias http="http -s default"
+
+# Draw graph of all dependencies of a Haskell package
+alias haskellgraph="ghc-pkg dot | tred | dot -Tpdf > pkgs.pdf"
+
+# print nix garbage collection roots
+alias nixroots="nix-store --gc --print-roots | less"
