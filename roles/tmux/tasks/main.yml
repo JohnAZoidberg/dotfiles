@@ -6,8 +6,11 @@
     state: installed
   when: only_config is not defined
 
-- name: Symlink config
+- name: Symlink config and theme
   file:
-    src: "{{ role_path }}/files/tmux.conf"
-    dest: "~/.tmux.conf"
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "/etc/{{ item }}"
     state: link
+  with_items:
+    - tmux.conf
+    - tmux_theme.conf
