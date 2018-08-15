@@ -35,7 +35,7 @@
 - name: Symlink i3 config
   file:
     src: "{{ role_path }}/files"
-    dest: "~/.i3"
+    dest: "~/.config/i3"
     state: link
 
 - name: Install gsimplecal for click on time in py3status
