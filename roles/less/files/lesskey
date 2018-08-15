@@ -1,5 +1,8 @@
 #env
-LESS = --ignore-case -R # ignore case in search when all lowercase
+#ignore case in search when all lowercase
+#ANSI "color" escape sequences are output in "raw" form
+#quit if everything fits on one screen
+LESS = --ignore-case --RAW-CONTROL-CHARS --quit-if-one-screen
 #command
 h noaction 5\e(  # move left or right with h and l
 l noaction 5\e)
