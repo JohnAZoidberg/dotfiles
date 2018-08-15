@@ -3,15 +3,22 @@
 # Keybindings {{{
 
     # Misc {{{
+bindsym Mod1+grave exec setxkbmap th
+bindsym Mod1+percent exec setxkbmap us -variant mac
+
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+bindsym        XF86MonBrightnessUp   exec xbacklight -inc 25 # increase screen brightness
+bindsym        XF86MonBrightnessDown exec xbacklight -dec 25 # decrease screen brightness
+bindsym Shift+XF86MonBrightnessUp    exec xbacklight -inc  5 # increase screen brightness
+bindsym Shift+XF86MonBrightnessDown  exec xbacklight -dec  5 # decrease screen brightness
 
 # Volume controls
-bindsym XF86AudioRaiseVolume exec $HOME/.i3/increase_volume 5 #increase sound volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym       XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+# raise volume with limit at 100%
+bindsym       XF86AudioRaiseVolume exec $HOME/.i3/increase_volume 5
+# raise volume without limit
 bindsym Shift+XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle # amixer -q set Master toggle
+bindsym       XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle # amixer -q set Master toggle
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -27,6 +34,9 @@ floating_modifier $mod
 
 # Automatic back-and-forth when switching to the current workspace
 workspace_auto_back_and_forth yes
+
+# Use tab labout as default
+workspace_layout tabbed
     # }}}
 
     # Custom {{{
@@ -208,6 +218,7 @@ exec --no-startup-id dunst
 # browser pop-ups
 for_window [window_role="pop-up"] floating enable
 for_window [class="Arandr"] floating enable
+for_window [class="qemu-system-x86_64"] floating enable
 
 # do not focus newly opened windows
 #no_focus [class="[.]*"]
