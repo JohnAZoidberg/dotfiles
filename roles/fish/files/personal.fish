@@ -1,5 +1,7 @@
 # variables to cd easier into important nix directories
+set bris "$HOME/cloudhome/hpe/bristol/"
 set nix "$HOME/media/clone/nixpkgs/"
+set nixchannels "$HOME/media/clone/nixpkgs-channels/"
 set conf "$HOME/cloudhome/nixconfig/daniel"
 
 # usage:
