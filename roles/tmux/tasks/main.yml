@@ -7,6 +7,7 @@
   when: only_config is not defined
 
 - name: Symlink config and theme
+  become: true
   file:
     src: "{{ role_path }}/files/{{ item }}"
     dest: "/etc/{{ item }}"
