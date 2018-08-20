@@ -4,3 +4,9 @@
   package:
     name: xfce4-terminal
     state: installed
+
+- name: Symlink xfce4-terminal config
+  file:
+    src: terminalrc
+    dest: "~/.config/xfce4/terminal/terminalrc"
+    state: link
