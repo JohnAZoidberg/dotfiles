@@ -80,32 +80,32 @@ if 1 " TODO: should check if vim-plug is installed
   Plug 'tpope/vim-repeat'
 
   " Advanced powerline
-  Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-  let g:Powerline_symbols = 'fancy'
-  let g:powerline_pycmd = 'py3'
+  "Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+  "let g:Powerline_symbols = 'fancy'
+  "let g:powerline_pycmd = 'py3'
 
   " File navigating plugin
-  Plug 'scrooloose/nerdtree'
-  let NERDTreeQuitOnOpen=1  " close nerdtree on opening file
-  " close vim if only window left is nerdtree
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-  " toggle nerdtree with ctrl+n
-  map <C-n> :NERDTreeToggle<CR>
-  " Nerdtree file type highlighting
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  "Plug 'scrooloose/nerdtree'
+  "let NERDTreeQuitOnOpen=1  " close nerdtree on opening file
+  "" close vim if only window left is nerdtree
+  "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  "" toggle nerdtree with ctrl+n
+  "map <C-n> :NERDTreeToggle<CR>
+  "" Nerdtree file type highlighting
+  "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
   " Snippets
-  Plug 'SirVer/ultisnips'
-  " Snippets are separated from the engine
-  Plug 'honza/vim-snippets'
-  " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-  let g:UltiSnipsExpandTrigger="<tab>"
-  let g:UltiSnipsJumpForwardTrigger="<c-m>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-  " If you want :UltiSnipsEdit to split your window.
-  let g:UltiSnipsEditSplit="vertical"
-  " Dir for custom snippets
-  set runtimepath+=~/dotfiles/vim/snippets/
+  "Plug 'SirVer/ultisnips'
+  "" Snippets are separated from the engine
+  "Plug 'honza/vim-snippets'
+  "" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+  "let g:UltiSnipsExpandTrigger="<tab>"
+  "let g:UltiSnipsJumpForwardTrigger="<c-m>"
+  "let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+  "" If you want :UltiSnipsEdit to split your window.
+  "let g:UltiSnipsEditSplit="vertical"
+  "" Dir for custom snippets
+  "set runtimepath+=~/dotfiles/vim/snippets/
 
   " Automatically insert closing parentheses, brackets, etc.
   Plug 'jiangmiao/auto-pairs'
