@@ -4,3 +4,15 @@
   package:
     name: rofi
     state: installed
+  when: only_config is not defined
+
+- name: Create rofi config directory
+  file:
+    path: "~/.config/rofi"
+    state: directory
+
+- name: Symlink rofi colorscheme
+  file:
+    src: "{{ role_path }}/files/solarized-light.rasi"
+    dest: "~/.config/rofi/solarized-light.rasi"
+    state: link
