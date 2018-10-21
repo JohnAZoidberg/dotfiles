@@ -1,8 +1,12 @@
+export GOPATH="/home/zoid/cloudhome/projects/gopath/"
+
 # variables to cd easier into important nix directories
-set bris "$HOME/cloudhome/hpe/bristol/"
-set nix "$HOME/media/clone/nixpkgs/"
-set nixchannels "$HOME/media/clone/nixpkgs-channels/"
+set nix "$HOME/media/clone/reference/nixpkgs/"
+set nixchannels "$HOME/media/clone/reference/nixpkgs-channels/"
 set conf "$HOME/cloudhome/nixconfig/daniel"
+function nixpkgs
+    cd (nix eval --raw "(import $conf/nixpkgs.nix).src")
+end
 
 # usage:
 # $ localnix $PATH_TO_NIXPKGS {test, rebuild}
