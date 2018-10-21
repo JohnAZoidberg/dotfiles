@@ -1,9 +1,8 @@
-[user]
-  email = {{ git_email }}
-  name = {{ git_name }}
+[include]
+  path = my_git_user_config
 
 [commit]
-  template= ~/.gitfiles/COMMIT_EDITMSG
+  template = gitmessage_template
 
 [push]
   default = simple
@@ -31,9 +30,7 @@
 
 [core]
   # global .gitignore
-  excludesfile = '~/.gitignore'
-  # warn about trailing whitespace
-  whitespace = trailing-space,space-before-tab,indent-with-non-tab
+  excludesfile = .gitignore
   pager = less --quit-if-one-screen
 
 [alias]
@@ -46,12 +43,18 @@
   lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
   lg = !"git lg1"
   wdiff = diff --color-words
+  c = checkout
+  p = pull
+  a = add
+  g = grep
+  d = diff
+  ds = diff --staged
   s = "!f(){ git status; git stash list; git branch; git log --format=short -1; }; f"
 
 [pager]
   stash = false
 
 [stash]
-  showPatch = true
+    showPatch = true
 
 # vim: set filetype=gitconfig

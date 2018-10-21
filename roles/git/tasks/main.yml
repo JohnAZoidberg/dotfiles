@@ -6,15 +6,20 @@
     state: installed
   when: only_config is not defined
 
+- name: Create git config directory
+  file:
+    path: ~/.config/git
+    state: directory
+
 - name: Symlink config files
   file:
     src: "{{ role_path }}/files/{{ item }}"
-    dest: "~/.{{ item }}"
+    dest: "~/.config/git/{{ item }}"
     state: link
   with_items:
-    - gitattributes
-    - gitfiles
-    - gitignore
+    - config
+    - ignore
+    - gitmessage_template
 
 - fail:
     msg: "Variable git_name or git_email is not defined."
@@ -22,5 +27,5 @@
 
 - name: Copy templated gitconfig to final destination
   template:
-    src: "{{ role_path }}/templates/gitconfig.j2"
-    dest: "~/.gitconfig"
+    src: "{{ role_path }}/templates/git/templates/my_git_user_config.j2"
+    dest: "~/.config/git/my_git_user_config"
