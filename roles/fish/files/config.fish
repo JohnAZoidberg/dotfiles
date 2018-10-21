@@ -114,7 +114,7 @@ alias http="http -s default"
 # Scan for wifi access points with iw
 function scanwifi
     sudo true  # to force password prompt before pipe
-    sudo iw dev wlp2s0 scan | less | grep 'SSID:' | sort -u
+    sudo iw dev wlp2s0 scan | grep 'SSID:' | sort -u
 end
 
 # Draw graph of all dependencies of a Haskell package
@@ -141,10 +141,41 @@ function nix-shell-gcc
     nix-shell -E "with import <nixpkgs> {}; (overrideCC stdenv $argv[1]).mkDerivation { name = \"shell-environment\"; buildInputs = [ $argv[2..-1] ]; }"
 end
 
+# Build project without having to write a default.nix that calls callPackage on the file
 function nix-build-default
     nix-build -E "with import <nixpkgs> {}; callPackage ./$argv[1] {}"
 end
 
+# Get the nix-shell of a project without  having to write a default.nix
+function nix-shell-default
+    nix-shell -E "with import <nixpkgs> {}; callPackage ./$argv[1] {}" $argv[2..-1]
+end
+
 function haskellEnv
   nix-shell -p "haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $argv ])"
+end
+
+# Build a project from local sources with the package description from nixpkgs
+# call it like `nix-build-fork openssl` if you're in the OpenSSL source directory
+function nix-build-fork
+    nix-build -E "with import <nixpkgs> {}; $argv[1].overrideAttrs (oldAttrs: { src = ./.;  })"
+end
+
+# Should display a smooth gradient of colors from red over green to blue
+# If your terminal doesn't support 16mil colors but only 256 the gradient isn't smooth
+# If it's not a gradient at all, your terminal is broken
+function check-colors
+	awk 'BEGIN{
+		  s="aaaaaaaaaaaaaaaaa"; s=s s s s s s s s;
+		  for (colnum = 0; colnum<77; colnum++) {
+			  r = 255-(colnum*255/76);
+			  g = (colnum*510/76);
+			  b = (colnum*255/76);
+			  if (g>255) g = 510-g;
+			  printf "\033[48;2;%d;%d;%dm", r,g,b;
+			  printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
+			  printf "%s\033[0m", substr(s,colnum+1,1);
+		  }
+		  printf "\n";
+	  }'
 end
