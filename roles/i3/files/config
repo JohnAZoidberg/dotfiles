@@ -15,7 +15,7 @@ bindsym Shift+XF86MonBrightnessDown  exec xbacklight -dec  5 # decrease screen b
 # Volume controls
 bindsym       XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 # raise volume with limit at 100%
-bindsym       XF86AudioRaiseVolume exec $HOME/.i3/increase_volume 5
+bindsym       XF86AudioRaiseVolume exec $HOME/.config/i3/increase_volume 5
 # raise volume without limit
 bindsym Shift+XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym       XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle # amixer -q set Master toggle
@@ -45,7 +45,7 @@ bindsym $mod+Control+1 exec $HOME/dotfiles/roles/multiscreen/files/singleMonitor
 bindsym $mod+Control+2 exec $HOME/dotfiles/roles/multiscreen/files/doubleMonitor.sh
 
 # rename workspace on the fly
-bindsym $mod+comma exec ~/.i3/rename_workspace
+bindsym $mod+comma exec ~/.config/i3/rename_workspace
 
 # suspend screen
 bindsym XF86Sleep exec systemctl suspend
@@ -194,7 +194,7 @@ bar {
   wheel_down_cmd nop
   # requires pip install py3status
   status_command py3status -c ~/.config/i3/i3status.conf
-  #status_command /usr/bin/env i3status-rs /home/zoid/.i3/status.toml
+  #status_command /usr/bin/env i3status-rs /home/zoid/.config/i3/status.toml
   font pango: FantasqueMono, FontAwesome, Bold 10
   separator_symbol " "
 
