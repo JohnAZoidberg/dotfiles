@@ -192,9 +192,12 @@ hide_edge_borders both
 bar {
   wheel_up_cmd nop
   wheel_down_cmd nop
+
   # requires pip install py3status
-  status_command py3status -c ~/.config/i3/i3status.conf
-  #status_command /usr/bin/env i3status-rs /home/zoid/.config/i3/status.toml
+  #status_command py3status -c ~/.config/i3/i3status.conf
+
+  status_command i3status-rs ~/.config/i3/i3status-rust.toml
+
   font pango: FantasqueMono, FontAwesome, Bold 10
   separator_symbol " "
 
