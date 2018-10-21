@@ -1,6 +1,5 @@
 # Include config that depends on the path structure in my home
 source "$HOME/.config/fish/personal.fish"
-source "$HOME/.config/fish/prompt.fish"
 
 # Enable vi-style navigation in fish
 fish_vi_key_bindings

@@ -11,6 +11,11 @@
     path: "~/.config/fish"
     state: directory
 
+- name: Create directory for fish functions
+  file:
+    path: "~/.config/fish/functions"
+    state: directory
+
 - name: Symlink fish config files
   file:
     src: "{{ role_path }}/files/{{ item }}"
@@ -18,13 +23,8 @@
     state: link
   with_items:
     - config.fish
-    - prompt.fish
     - personal.fish
-
-- name: Create directory for fish functions
-  file:
-    path: "~/.config/fish/functions"
-    state: directory
+    - "functions/fish_prompt.fish"
 
 - name: Install fundle (fish plugin manager)
   get_url:
