@@ -20,6 +20,8 @@ bindsym       XF86AudioRaiseVolume exec $HOME/.config/i3/increase_volume 5
 bindsym Shift+XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym       XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle # amixer -q set Master toggle
 
+bindsym       XF86Display          exec $HOME/dotfiles/roles/multiscreen/files/toggleMonitors.sh
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
