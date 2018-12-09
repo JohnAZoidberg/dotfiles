@@ -8,11 +8,14 @@
 
 - name: Ensure xfce4 config dir is present
   file:
-    path: "~/.config/xfce4"
+    path: "{{ item }}"
     state: directory
+  with_items:
+    - "~/.config/xfce4"
+    - "~/.config/xfce4/terminal"
 
 - name: Symlink xfce4-terminal config
   file:
-    src: "{{ role_path }}/files"
-    dest: "~/.config/xfce4/terminal"
+    src: "{{ role_path }}/files/terminalrc"
+    dest: "~/.config/xfce4/terminal/terminalrc"
     state: link
