@@ -1,4 +1,24 @@
 " Section: Mappings {{{
+let mapleader=","                           " set leader to , (Comma)
+
+noremap <leader>ev :e $MYVIMRC<cr> " open .vimrc with <leader>ev
+noremap <leader>sv :so $MYVIMRC<cr>" open .vimrc with <leader>sv
+
+" move in wrapped line as if they were separate
+" flip meaning of j and gj, and k and gk
+nnoremap k gk
+nnoremap j gj
+vnoremap k gk
+vnoremap j gj
+nnoremap gk k
+nnoremap gj j
+vnoremap gk k
+vnoremap gj j
+
+noremap  <leader><space> :nohlsearch<cr><leader><space> " turn off search highlight
+nnoremap <space> za                         " toggle fold on spacebar
+nnoremap <silent><leader>w :%s/\s\+$//<cr>  " delete all trailing whitespace
+vnoremap <c-a> <esc>ggVG                    " select entire file
 " }}}
 
 " Section: Plugins {{{
@@ -11,6 +31,26 @@ if 1 " TODO: should check if vim-plug is installed
   call plug#begin('~/.vim/plugged')
 
   " Plugins: In use {{{
+
+  " show git diff +, -, ~ at the left
+  Plug 'airblade/vim-gitgutter'
+  "set updatetime=250
+
+  " cp to copy to system-Clipboard
+  " cP to copy line and cv to paste to next line
+  " REQUIRES xsel to be installed or clip and paste on Windows
+  Plug 'christoomey/vim-system-copy'
+
+  " surround with s
+  Plug 'tpope/vim-surround'
+
+  " repeat plugin commands
+  Plug 'tpope/vim-repeat'
+
+  Plug 'vimwiki/vimwiki'
+  "let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+  let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+  let g:vimwiki_global_ext = 0
   " }}}
 
   " Plugins: Testing {{{
