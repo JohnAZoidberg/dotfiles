@@ -114,7 +114,12 @@ alias http="http -s default"
 # Scan for wifi access points with iw
 function scanwifi
     sudo true  # to force password prompt before pipe
-    sudo iw dev wlp2s0 scan | grep 'SSID:' | sort -u
+    sudo iw dev wlp3s0 scan | grep 'SSID:' | sort -u
+end
+
+function wifistatus
+    sudo true  # to force password prompt before pipe
+    sudo iw dev wlp3s0 link
 end
 
 # Draw graph of all dependencies of a Haskell package
@@ -179,3 +184,5 @@ function check-colors
 		  printf "\n";
 	  }'
 end
+
+alias treesult="tree result"
