@@ -1,31 +1,6 @@
 " Section: Mappings {{{
 "set bg=dark
 
-let mapleader=","                           " set leader to , (Comma)
-
-noremap <silent> <leader>ev :e $MYVIMRC<cr> " open .vimrc with <leader>ev
-noremap <silent> <leader>sv :so $MYVIMRC<cr>" open .vimrc with <leader>sv
-
-" Support indenting multiple times in visual mode
-vnoremap < <gv
-vnoremap > >gv
-
-" move in wrapped line as if they were separate
-" flip meaning of j and gj, and k and gk
-nnoremap k gk
-nnoremap j gj
-vnoremap k gk
-vnoremap j gj
-nnoremap gk k
-nnoremap gj j
-vnoremap gk k
-vnoremap gj j
-
-noremap <leader><space> :nohlsearch<cr><leader><space> " turn off search highlight
-nnoremap <space> za                         " toggle fold on spacebar
-nnoremap <silent><leader>w :%s/\s\+$//<cr>  " delete all trailing whitespace
-vnoremap <c-a> <esc>ggVG                    " select entire file
-
 " scroll 3 lines instead of one
 nmap <C-Y> <C-Y>3
 nmap <C-E> <C-E>3
@@ -33,9 +8,6 @@ nmap <C-E> <C-E>3
 " scroll 10 cols instead of one
 nnoremap zh 10zh
 nnoremap zl 10zl
-
-" save as sudo
-cmap w!! w !sudo tee > /dev/null %
 
 " Spellchecking
 nnoremap <leader>de :setlocal spell spelllang=de<cr>:set spellcapcheck<cr>       " add Spellcheck for German
@@ -68,21 +40,6 @@ if 1 " TODO: should check if vim-plug is installed
   call plug#begin('~/.vim/plugged')
 
   " Plugins: In use {{{
-
-  " show git diff +, -, ~ at the left
-  Plug 'airblade/vim-gitgutter'
-  "set updatetime=250
-
-  " cp to copy to system-Clipboard
-  " cP to copy line and cv to paste to next line
-  " REQUIRES xsel to be installed or clip and paste on Windows
-  Plug 'christoomey/vim-system-copy'
-
-  " surround with s
-  Plug 'tpope/vim-surround'
-
-  " repeat plugin commands
-  Plug 'tpope/vim-repeat'
 
   " easily search for, substitute, and abbreviate multiple variants of a word
   Plug 'tpope/vim-abolish'
@@ -234,27 +191,6 @@ endif
 
 " }}}
 
-" Section: OS-Specific {{{
-
-if has("win32")
-  " Windows {{{
-
-  set backupdir=$HOME\_vim\backup\\
-  set directory=$HOME\_vim\tmp\\
-
-  " }}}
-else
-  " Linux {{{
-
-  " move the backup and temp files somewhere else so they don't clutter up the
-  " current directory
-  set backupdir=$HOME/.vim/backup//
-  set directory=$HOME/.vim/tmp//
-
-  " }}}
-endif
-
-" }}}
 
 " Section: LaTeX and Markdown{{{
 
@@ -289,33 +225,13 @@ au BufWinEnter * silent! loadview           " maybe needs foldlevel or foldlevel
 
 " Section: Options {{{
 
-set encoding=utf-8                          " force utf8 support
-syntax on                                   " syntax highlighting
 set t_Co=256                                " Use 256 colours
 set showmatch                               " highlight matching braces/parentheses/brackets
-set cursorline                              " highlight current line
-set modelines=1                             " last line of this file applies to just this file
-set autoindent
-set ruler                                   " show line and column number
-set display=lastline,uhex                   " show non printable as hex and long last line
-set nostartofline                           " keep cursor in column when jumping
-
-set nowrap                                  " just cut off lines that are too long
 set sidescroll=10                           " only scroll 10 cols to the side when reaching screen end
 set sidescrolloff=5                         " start scrolling 5 cols from the edge
 set textwidth=0                             " don't break lines at all if they are too long
 set linebreak                               " wrap lines only on characters in 'breakat'
 set breakat&vim                             " reset breakat to vims default
-set whichwrap+=<,>,h,l,[,]                  " moving beyound edge moves to adjacent line
-set backspace=indent,eol,start              " enable deleting newline from beginning of next line
-
-" Enable mouse (only for resizing splits)
-set mouse=a
-if has("mouse_sgr")
-    set ttymouse=sgr
-else
-    set ttymouse=xterm2
-end
 
 " Enable true colors
 if exists('+termguicolors')
@@ -327,27 +243,6 @@ endif
 set shiftwidth=4 tabstop=4 softtabstop=4    " sets default tab size to 4 spaces
 set expandtab                               " insert spaces when pressing tab
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
-
-" move swapfiles somewhere else (directories declared in OS specific)
-" Two path separators at the end to ensure file name uniqueness
-" in the preserve directory (see the :help docs)
-set swapfile
-set backup
-
-set relativenumber                          " show relative line numbers
-set number                                  " but absolute of current line
-
-set ignorecase                              " make search case insensitive
-set smartcase                               " Case insensitive searches become sensitive with capitals
-set lazyredraw                              " redraw only when we need to
-set incsearch                               " search as characters are entered
-set hlsearch                                " highlight matches
-
-set splitbelow                              " new splits on the right and on the bottom
-set splitright                              " more intutitive for LTR languages
-
-set wildmenu                                " visual autocomplete for command menu
-set wildmode=list:full                      " autocomplete first match and show list
 
 set timeout timeoutlen=500                  " low timeout for partial commands
 

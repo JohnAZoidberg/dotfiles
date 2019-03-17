@@ -4,6 +4,10 @@ let mapleader=","                           " set leader to , (Comma)
 noremap <leader>ev :e $MYVIMRC<cr> " open .vimrc with <leader>ev
 noremap <leader>sv :so $MYVIMRC<cr>" open .vimrc with <leader>sv
 
+" Support indenting multiple times in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
 " move in wrapped line as if they were separate
 " flip meaning of j and gj, and k and gk
 nnoremap k gk
@@ -20,6 +24,9 @@ nnoremap <space> za                         " toggle fold on spacebar
 nnoremap <silent><leader>w :%s/\s\+$//<cr>  " delete all trailing whitespace
 vnoremap <c-a> <esc>ggVG                    " select entire file
 " }}}
+
+" save as sudo
+cmap w!! w !sudo tee > /dev/null %
 
 " Section: Plugins {{{
 
@@ -54,6 +61,7 @@ if 1 " TODO: should check if vim-plug is installed
   " }}}
 
   " Plugins: Testing {{{
+  "Plug 'pandysong/ghost-text.vim'
   "}}}
 
   " Plugins: Unused {{{
@@ -93,6 +101,47 @@ endif
 
 set encoding=utf-8                          " force utf8 support
 syntax on                                   " syntax highlighting
+set cursorline                              " highlight current line
+set modelines=1                             " last line of this file applies to just this file
+set autoindent
+set display=lastline,uhex                   " show non printable as hex and long last line
+
+set nostartofline                           " keep cursor in column when jumping
+set nowrap                                  " let lines run off the screen if they are too long
+set whichwrap+=<,>,h,l,[,]                  " moving beyound edge moves to adjacent line
+set backspace=indent,eol,start              " enable deleting newline from beginning of next line
+
+" move swapfiles somewhere else (directories declared in OS specific)
+" Two path separators at the end to ensure file name uniqueness
+" in the preserve directory (see the :help docs)
+set swapfile
+set backup
+
+set ruler                                   " show line and column number
+set relativenumber                          " show relative line numbers
+set number                                  " but absolute of current line
+
+set ignorecase                              " make search case insensitive
+set smartcase                               " Case insensitive searches become sensitive with capitals
+set lazyredraw                              " redraw only when we need to
+set incsearch                               " search as characters are entered
+set hlsearch                                " highlight matches
+
+set splitbelow                              " new splits on the right and on the bottom
+set splitright                              " more intutitive for LTR languages
+
+set wildmenu                                " visual autocomplete for command menu
+set wildmode=list:full                      " autocomplete first match and show list
+
+
+" Enable mouse (Use it only for resizing splits!)
+set mouse=a
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
+
 " }}}
 
 " Section: To be reviewed {{{
