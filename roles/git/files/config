@@ -2,7 +2,7 @@
   path = my_git_user_config
 
 [commit]
-  template = gitmessage_template
+  template = ~/.config/git/gitmessage_template
 
 [push]
   default = simple

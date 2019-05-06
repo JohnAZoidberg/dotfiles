@@ -27,5 +27,5 @@
 
 - name: Copy templated gitconfig to final destination
   template:
-    src: "{{ role_path }}/templates/git/templates/my_git_user_config.j2"
+    src: "{{ role_path }}/templates/my_git_user_config.j2"
     dest: "~/.config/git/my_git_user_config"
