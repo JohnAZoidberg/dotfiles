@@ -150,6 +150,12 @@ end
 function nix-build-default
     nix-build -E "with import <nixpkgs> {}; callPackage ./$argv[1] {}"
 end
+function nix-build-default-python
+    nix-build -E "with import <nixpkgs> {}; pythonPackages.callPackage ./$argv[1] {}"
+end
+function nix-build-default-python3
+    nix-build -E "with import <nixpkgs> {}; python3Packages.callPackage ./$argv[1] {}"
+end
 
 # Get the nix-shell of a project without  having to write a default.nix
 function nix-shell-default
@@ -186,3 +192,71 @@ function check-colors
 end
 
 alias treesult="tree result"
+alias dc="docker-compose"
+
+function pdf
+  evince $argv &; disown
+end
+
+function ns
+  nix-shell --run fish $argv
+end
+
+function ns-python
+  ns -p "python3.withPackages(ps: with ps; [ $argv ])"
+end
+
+function ns-python2
+  ns -p "python2.withPackages(ps: with ps; [ $argv ])"
+end
+
+function ns-default-a
+  ns -p "(import ./default.nix {}).$argv[1]" $argv[2..-1]
+end
+
+alias nixos-doc="nixos-help"
+alias nixpkgs-doc="nix build -f '<nixos/nixos/release-combined.nix>' nixpkgs.manual"
+alias nix-doc="nix build -f '<nixos>' nix.doc"
+
+alias nr="nix-review"
+function nr-local
+  nix-review rev (git rev-parse HEAD)
+end
+
+function nix-size
+  nix path-info -Sh $argv
+end
+
+function nix-derivation
+  nix-store -qd $argv
+end
+
+# Build-time dependencies
+function nix-deps
+  nix-store -qR (nix-derivation $argv[1]) $argv[2..-1]
+end
+function nix-deps-tree
+  nix-store -q --tree (nix-derivation $argv[1]) $argv[2..-1]
+end
+
+# Runtime dependencies
+function nix-closure
+  nix-store -qR $argv
+end
+function nix-closure-tree
+  nix-store -q --tree $argv
+end
+
+# Find paths that depend on this
+function nix-reverse-deps
+  nix-store -q --referrers $argv
+end
+
+function nix-gc-roots
+  nix-store -q --roots $argv
+end
+
+function checkout-pr
+  set pr "pr-$argv[1]"
+  git fetch upstream pull/$argv[1]/head:$pr; and git checkout $pr
+end
