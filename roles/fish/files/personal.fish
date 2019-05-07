@@ -3,7 +3,8 @@ export GOPATH="/home/zoid/cloudhome/projects/gopath/"
 # variables to cd easier into important nix directories
 set nix "$HOME/media/clone/reference/nixpkgs/"
 set nixchannels "$HOME/media/clone/reference/nixpkgs-channels/"
-set conf "$HOME/cloudhome/nixconfig/daniel"
+set conf "$HOME/cloudhome/nix-konfiguriert/daniel"
+set dotfiles "$HOME/cloudhome/dotfiles/"
 function nixpkgs
     cd (nix eval --raw "(import $conf/nixpkgs.nix).src")
 end
