@@ -8,6 +8,9 @@ function fish_prompt --description 'Write out the prompt'
       if test -n "$IN_NIX_SHELL"
         echo -n "<nix>"
       end
+      if test -n "$GUIX_ENVIRONMENT"
+        echo -n "<guix>"
+      end
     )
 
     function _git_branch_name
