@@ -6,10 +6,12 @@
   with_items:
     - "{{ networkmanager_package_name }}"
     - network-manager-applet
+  when: only_config is not defined
 
 - name: Enable NetworkManager.service
   become: yes
   systemd:
     name: NetworkManager
     enabled: true
+  when: ansible_os_family != "NixOS"
 

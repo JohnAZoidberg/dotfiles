@@ -8,3 +8,4 @@
     - pulseaudio
     - pavucontrol
     - playerctl  # not available for Debian
+  when: only_config is not defined

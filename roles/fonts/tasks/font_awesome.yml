@@ -3,11 +3,13 @@
   get_url:
     url: http://fontawesome.io/assets/font-awesome-4.7.0.zip
     dest: /tmp/font-awesome-4.7.0.zip
+  when: ansible_os_family != "NixOS"
 
 - name: Extract Font Awesome
   unarchive:
     src: /tmp/font-awesome-4.7.0.zip
     dest: /tmp/fonts/
+  when: ansible_os_family != "NixOS"
 
 - name: Install Font Awesome
   become: true
@@ -15,3 +17,4 @@
     src: "{{ item }}"
     dest: /usr/share/fonts/
   with_fileglob: "/tmp/fonts/font-awesome-4.7.0/fonts/*"
+  when: ansible_os_family != "NixOS"

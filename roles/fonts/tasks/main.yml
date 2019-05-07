@@ -3,6 +3,7 @@
   file:
     name: /tmp/fonts
     state: directory
+  when: ansible_os_family != "NixOS"
 
 - include_tasks: fantasque_sans_mono.yml
 - fontinclude_tasks: fant_awesome.yml

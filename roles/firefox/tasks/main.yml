@@ -3,6 +3,7 @@
   become: true
   package:
     name: firefox
+  when: only_config is not defined
 
 - name: Enable touch for firefox
   become: true
@@ -13,3 +14,4 @@
     owner: root
     group: root
     mode: 0761
+  when: ansible_os_family != "NixOS"

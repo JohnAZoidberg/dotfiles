@@ -3,11 +3,13 @@
   get_url:
     url: https://github.com/belluzj/fantasque-sans/releases/download/v1.7.1/FantasqueSansMono.tar.gz
     dest: /tmp/FantasqueSansMono.tar.gz
+  when: ansible_os_family != "NixOS"
 
 - name: Extract Fantasque Sans Mono
   unarchive:
     src: /tmp/FantasqueSansMono.tar.gz
     dest: /tmp/fonts
+  when: ansible_os_family != "NixOS"
 
 - name: Install Fantasque Mono
   become: true
@@ -15,3 +17,4 @@
     src: "{{ item }}"
     dest: /usr/share/fonts/
   with_fileglob: "/tmp/fonts/*.ttf"
+  when: ansible_os_family != "NixOS"

@@ -6,9 +6,11 @@
     state: installed
   with_items:
     lightdm-gtk-greeter
+  when: only_config is not defined
 
 - name: Enable lightdm
   become: true
   service:
     name: lightdm
     enabled: true
+  when: ansible_os_family != "NixOS"

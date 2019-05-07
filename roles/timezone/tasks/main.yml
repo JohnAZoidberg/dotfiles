@@ -4,3 +4,4 @@
   become: yes
   timezone:
     name: Europe/Berlin
+  when: ansible_os_family != "NixOS"

@@ -4,9 +4,11 @@
   package:
     name: chromium
     state: installed
+  when: only_config is not defined
 
-#- name: Install widevine DRM tool (for Netflix)
-#  become: true
-#  package:
-#    name: chromium-widevine
-#    state: installed
+- name: Install widevine DRM tool (for Netflix)
+  become: true
+  package:
+    name: chromium-widevine
+    state: installed
+  when: ansible_os_family == "Arch Linux" or ansible_os_family == "Archlinux"

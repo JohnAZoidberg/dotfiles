@@ -6,3 +6,4 @@
     dest: "/etc/systemd/logind.conf"
     state: link
     force: yes
+  when: ansible_os_family != "NixOS"

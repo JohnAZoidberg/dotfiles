@@ -14,3 +14,4 @@
     - "xcape -e 'Caps_Lock=Escape'             # Map Caps-Lock to Escape"
     - "setxkbmap us -variant mac               # US Keyboard layout with German letters"
     - "setxkbmap -option 'caps:ctrl_modifier'  # Map Caps-Lock-modifier to Ctrl"
+  when: ansible_os_family != "NixOS"

@@ -6,14 +6,17 @@
   package:
     name: xorg
     state: installed
+  when: only_config is not defined
 
 - name: Install video driver
   become: yes
   package:
     name: xf86-video-intel
     state: installed
+  when: only_config is not defined
 
 - name: Ensure proper xinitrc in place
   copy:
     src: xinitrc
     dest: "{{ ansible.HOME }}/.xinitrc"
+  when: ansible_os_family != "NixOS"

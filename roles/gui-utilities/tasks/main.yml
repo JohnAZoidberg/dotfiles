@@ -10,3 +10,4 @@
     - thunderbird
     - keepass
     - feh
+  when: only_config is not defined
