@@ -54,7 +54,4 @@
 [pager]
   stash = false
 
-[stash]
-    showPatch = true
-
 # vim: set filetype=gitconfig
