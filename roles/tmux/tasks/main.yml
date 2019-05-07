@@ -10,7 +10,7 @@
   become: true
   file:
     src: "{{ role_path }}/files/{{ item }}"
-    dest: "/etc/{{ item }}"
+    dest: "~/.{{ item }}"
     state: link
   with_items:
     - tmux.conf
