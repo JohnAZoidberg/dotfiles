@@ -14,3 +14,8 @@
     name: lightdm
     enabled: true
   when: ansible_os_family != "NixOS"
+
+- name: Download GitHub profile picture
+  get_url:
+    url: "https://github.com/{{ github_username }}.png?size=96"
+    dest: $HOME/.face
