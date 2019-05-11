@@ -11,13 +11,6 @@ on_click = "xsel -c"
 interval = 1
 
 [[block]]
-block = "net"
-device = "wlp2s0"
-ssid = true
-speed_up = false
-speed_down = false
-
-[[block]]
 block = "memory"
 display_type = "memory"
 format_mem = "{SUg}+{MUg}GB ({MUp}%)"
@@ -31,18 +24,11 @@ unit = "GB"
 interval = 20
 
 [[block]]
-block = "battery"
-
-[[block]]
 block = "cpu"
 interval = 1
 
 [[block]]
 block = "sound"
-
-[[block]]
-block = "backlight"
-device = "intel_backlight"
 
 [[block]]
 block = "time"

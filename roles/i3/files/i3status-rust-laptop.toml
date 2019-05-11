@@ -1,0 +1,14 @@
+[[block]]
+block = "net"
+device = "wlp2s0"
+ssid = true
+speed_up = false
+speed_down = false
+
+[[block]]
+block = "battery"
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
