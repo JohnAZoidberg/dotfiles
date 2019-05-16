@@ -18,6 +18,7 @@ To run for example base.yml perform the following command
 - `git_email`: The value to set for user.email in the gitconfig
 - `fish_user`: The user to create and give fish as shell
 - `sudo_user`: The user to create and and as a sudoer
+- `github_user`: Username on GitHub
 
 # Playbooks
 base:             Everything essential that I need on all my systems.
