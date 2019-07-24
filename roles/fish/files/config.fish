@@ -2,7 +2,9 @@
 source "$HOME/.config/fish/personal.fish"
 
 # Enable vi-style navigation in fish
-fish_vi_key_bindings
+function fish_user_key_bindings
+  fish_vi_key_bindings
+end
 
 # Fundle plugin manager
 # Install the fish-ssh-agent plugin
@@ -17,16 +19,16 @@ if type -q direnv
 end
 
 # Faster cd into multiple levels up
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+alias ..    "cd .."
+alias ...   "cd ../.."
+alias ....  "cd ../../.."
+alias ..... "cd ../../../.."
 
 # Inform tmux that UTF-8 is supported even if the locale is wrong
 alias tmux="tmux -u"
 
 # Stay in the folger navigated to when exiting ranger
-alias ranger="ranger --choosedir=$HOME/.rangerdir; cd (cat $HOME/.rangerdir)"
+#alias ranger="ranger --choosedir=$HOME/.rangerdir; cd (cat $HOME/.rangerdir)"
 function rangerd
     pushd $argv[1]
     ranger
@@ -41,11 +43,11 @@ alias nixhash="nixos-prefetch-url"
 alias vimfish="vim $HOME/.config/fish/config.fish"
 alias srcfish="source $HOME/.config/fish/config.fish"
 
-# easily activate and deactivate redshift
+# Easily activate and deactivate redshift
 alias redshift="redshift -O 4000K"
 alias killallredshift="redshift -O 6500K"
 
-# parallel compression and decompression of archives
+# Parallel compression and decompression of xz archives
 function tarxz
     tar -Ipixz -cf "$argv[1].tar.xz" "$argv[1]/"
 end
@@ -55,26 +57,19 @@ function targz
 end
 alias untargz="tar -Ipigz -xf"
 
-# search for a specific package in a nixpkgs repo
+# Search for a specific package in a nixpkgs repo
 function grepkg
     pushd $argv[1]
     git grep -iP "name += \"$argv[2..-1]"
     popd
 end
 
-# check a code tree for TODO markers
-alias greptodo="grep -irn TODO"
-
-#function cd
-#    "builtin cd $argv[1]; and ls -ahl | head; and echo ..."
-#end
-
-# remove hidden files that are created by MacOS
+# Remove hidden files that are created by MacOS
 function rmmac
     rm -r ../**/{.DS_Store,.AppleDouble,.LSOverride,__MACOSX}
 end
 
-# turn project into a nix/direnv project
+# Turn project into a nix/direnv project
 function nixify
     if not test -e ./.envrc
         echo "use nix" > .envrc
@@ -93,16 +88,15 @@ stdenv.mkDerivation {
     end
 end
 
-
-# Start emacs daemon and launch in folder above (because of direnv)
+# Start emacs daemon and launch in parent directory (because of direnv)
 alias startemacs="emacs --daemon; emacsclient -cn .."
 # Open file in emacs if daemon is running. Open in vim if not
 alias vime="emacsclient -n -a=vim"
 # Kill running emacs
 alias killemacs='emacsclient -e "(kill-emacs)"'
 
-# post json data with curl
-# NOTE: unnecessary with the packaage httpie
+# Post json data with curl
+# NOTE: unnecessary with the package httpie
 function curlpost
     curl --verbose -H "Content-Type: application/json" -X POST -d $argv
 end
@@ -111,15 +105,21 @@ end
 # I have no idea why it has to be specifiedd
 alias http="http -s default"
 
+# Print name of the wireless interface
+function wifiinterface
+  echo /sys/class/net/*/wireless | awk -F'/' '{ print $5 }'
+end
+
 # Scan for wifi access points with iw
 function scanwifi
     sudo true  # to force password prompt before pipe
-    sudo iw dev wlp3s0 scan | grep 'SSID:' | sort -u
+    sudo iw dev (wifiinterface) scan | grep 'SSID:' | sort -u
 end
 
+# Show connection status of wifi
 function wifistatus
     sudo true  # to force password prompt before pipe
-    sudo iw dev wlp3s0 link
+    sudo iw dev (wifiinterface) link
 end
 
 # Draw graph of all dependencies of a Haskell package
@@ -131,7 +131,7 @@ function convertoffice
     nix-shell -p libreoffice --run "libreoffice --headless --convert-to pdf $argv"
 end
 
-# print nix garbage collection roots
+# Print nix garbage collection roots
 alias nixroots="nix-store --gc --print-roots | less"
 
 # Generate a TOTP like Google Authenticator does
@@ -162,7 +162,7 @@ function nix-shell-default
     nix-shell -E "with import <nixpkgs> {}; callPackage ./$argv[1] {}" $argv[2..-1]
 end
 
-function haskellEnv
+function ns-haskell
   nix-shell -p "haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $argv ])"
 end
 
@@ -194,18 +194,20 @@ end
 alias treesult="tree result"
 alias dc="docker-compose"
 
+# Launch my pdf reader on a file and detach it
 function pdf
   evince $argv &; disown
 end
 
+# Nix shell with fish as its shell
 function ns
   nix-shell --run fish $argv
 end
 
+# Nix shell with python dependencies
 function ns-python
   ns -p "python3.withPackages(ps: with ps; [ $argv ])"
 end
-
 function ns-python2
   ns -p "python2.withPackages(ps: with ps; [ $argv ])"
 end
@@ -214,19 +216,27 @@ function ns-default-a
   ns -p "(import ./default.nix {}).$argv[1]" $argv[2..-1]
 end
 
+# Launch the manual
 alias nixos-doc="nixos-help"
+# Build the nixpkgs manual
 alias nixpkgs-doc="nix build -f '<nixos/nixos/release-combined.nix>' nixpkgs.manual"
+# Build all the document
 alias nix-doc="nix build -f '<nixos>' nix.doc"
 
+# Review a nixpkgs pull request
 alias nr="nix-review"
+# Run nix-review on the latest local commit
+# One benefit: Builds reverse dependencies of the changes packages
 function nr-local
   nix-review rev (git rev-parse HEAD)
 end
 
+# Print the human-readable size of a nix closure
 function nix-size
   nix path-info -Sh $argv
 end
 
+# Print the derivation of a build product (if it's available in the nix-store)
 function nix-derivation
   nix-store -qd $argv
 end
@@ -252,11 +262,101 @@ function nix-reverse-deps
   nix-store -q --referrers $argv
 end
 
-function nix-gc-roots
-  nix-store -q --roots $argv
-end
+# Print nix garbage collection roots
+alias nix-gc-roots "nix-store -q --roots"
 
+# Checkout a GitHub pull request by its number
 function checkout-pr
   set pr "pr-$argv[1]"
   git fetch upstream pull/$argv[1]/head:$pr; and git checkout $pr
+end
+
+# Guarantee to re-build a nix-expression, even if a build result is already in
+# the cache or available with a substituter. Useful to debug transient issues.
+# Better than `--check` because it also works when there is no version in the
+# store yet and it won't complain about non-reproducibility.
+function nix-rebuild
+  set expression "with (import ./. {}); $argv[1].overrideAttrs (old: { REBUILD_MARKER="(random)"; })"
+  echo "Building '$expression'"
+  nix-build -E "$expression"
+end
+
+# Don't use binary caches
+# --option build-use-substitutes false
+
+# Systemd aliases (because I always mistype...)
+function sstart
+  sudo systemctl start $argv
+end
+
+function sstop
+  sudo systemctl stop $argv
+end
+
+function sstatus
+  systemctl status $argv
+end
+
+# Replacement
+alias ll 'exa -l --group --git-ignore'
+
+# Open files found by fzf fuzzy finder
+alias vf 'vim (fzf)'
+
+# Fancy Rust cat alternative
+alias bat 'bat --theme=ansi-dark'
+
+# Remove trailing whitespace
+# + puts all found files as arguments after sed
+# ; would run sed for every file found
+function  rmtrail
+  find -type f -exec sed -i 's/ *$//' {} +
+end
+
+# Ignore all -not -path '*/\.*'
+# Ignore git directory
+function find
+  command find $argv -not -path '*/\.git*'
+end
+
+# Ignore binary files and git directory
+alias codespell 'codespell -q 2 -S .git'
+
+# Information about the output of a derivation
+alias llbin 'll result/bin/'
+alias lllib 'll result/lib/'
+alias llman 'll result/share/man/*'
+
+# List non-embedded fonts in a PDF
+function lspdffonts
+  nix-shell -p poppler_utils --run "pdffonts $argv | awk '\$4 == \"no\" {print \$0}'"
+end
+
+# List files that are not encoded with UTF-8 (or ASCII because that's a subset)
+function ll-nonutf8
+  find -type f | xargs file | grep -v -e ASCII -e UTF-8 #| awk -F ':' '{print $1}'
+end
+
+# Extract RPM in a subdirectory with the same name (minus file extension)
+function unrpm
+  set out_dir (basename -s .rpm $argv[1])
+  mkdir $out_dir
+  pushd $out_dir
+  nix-shell -p rpm --run "rpm2cpio ../$argv[1] | cpio -idmv"
+  popd
+end
+
+# Show all dependencies of RPM package
+alias rpmdeps "rpm -qpR"
+
+# Show the contents of a X.509 certificate
+alias dumpcert "openssl x509 -text -noout -in"
+
+# Print all files with more than one hardlink
+alias findhardlinks "find . -type f -links +1 2>/dev/null"
+
+# Find sparse files (size is bigger than their occupied disk space)
+# Left column: BLOCK-SIZE*st_blocks / st_size
+function findsparse
+  find . -type f -printf "%S\t%p\n" | awk '$1 < 1.0 {print}'
 end
