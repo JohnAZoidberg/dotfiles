@@ -1,6 +1,6 @@
 # dotfiles
 
-This repository provides several roles and playbooks for installing and configuering tools on Linux.
+This repository provides several roles and playbooks for installing and configuring the tools Linux that I frequently use.
 
 ## Requirements
 - An installed Linux distribution (Debian or Arch are recommended, others will probably fail)
