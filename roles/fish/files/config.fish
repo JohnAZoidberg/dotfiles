@@ -27,7 +27,7 @@ alias ..... "cd ../../../.."
 # Inform tmux that UTF-8 is supported even if the locale is wrong
 alias tmux="tmux -u"
 
-# Stay in the folger navigated to when exiting ranger
+# Stay in the folder navigated to when exiting ranger
 #alias ranger="ranger --choosedir=$HOME/.rangerdir; cd (cat $HOME/.rangerdir)"
 function rangerd
     pushd $argv[1]
