@@ -32,8 +32,7 @@
   enabled = true
 
 [core]
-  # global .gitignore
-  excludesfile = .gitignore
+  excludesfile = ~/.config/git/ignore
   pager = less --quit-if-one-screen
 
 [alias]
