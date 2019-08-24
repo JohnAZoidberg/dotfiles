@@ -147,4 +147,7 @@ end
 " Section: To be reviewed {{{
 " }}}
 
+" Reload programs when config is saved
+autocmd BufWritePost sxhkdrc silent! !kill -SIGUSR1 (pgrep sxhkd)
+
 " vim: foldmethod=marker

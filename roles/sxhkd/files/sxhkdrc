@@ -1,0 +1,118 @@
+### Screen brightness controls ###
+XF86MonBrightnessUp
+  xbacklight -inc 25
+
+XF86MonBrightnessDown
+  xbacklight -dec 25
+
+XF86MonBrightnessUp + shift
+  xbacklight -inc  5
+
+XF86MonBrightnessDown + shift
+  xbacklight -dec  5
+
+
+### Volume controls ###
+XF86AudioLowerVolume
+  pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Raise volume with limit at 100%
+XF86AudioRaiseVolume
+  $HOME/.config/i3/increase_volume 5
+
+# Raise volume without limit
+XF86AudioRaiseVolume + shift
+  pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+XF86AudioMute
+  pactl set-sink-mute @DEFAULT_SINK@ toggle # amixer -q set Master toggle
+
+XF86AudioMicMute
+  pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+
+### Other "media keys" ###
+XF86Sleep
+  systemctl suspend
+
+# On the T480 there's not sleep button
+XF86Favorites
+  systemctl suspend
+
+# Capture screen with Flameshot
+Print
+  dbus-send --session --print-reply --dest=org.dharkael.Flameshot / org.dharkael.Flameshot.graphicCapture string:'' int32:0 uint32:0
+
+# Capture screen with Flameshot in 5 second delay
+Print + shift
+  dbus-send --session --print-reply --dest=org.dharkael.Flameshot / org.dharkael.Flameshot.graphicCapture string:'' int32:5000 uint32:0
+
+# TODO: Do I want this?
+super + F4
+  systemctl hibernate
+
+# TODO: Maybe add more keys
+# Mirror: https://github.com/Ventto/mons/commit/8a62cf2811c585e1611810e70e5fbdfec5e832b9
+# $HOME/dotfiles/roles/multiscreen/files/singleMonitor.sh
+# $HOME/dotfiles/roles/multiscreen/files/doubleMonitor.sh
+XF86Display
+  $HOME/dotfiles/roles/multiscreen/files/toggleMonitors.sh
+
+XF86Tools
+  $HOME/dotfiles/roles/i3/files/toggleTouchpad.sh
+
+XF86Bluetooth
+  echo enable >> sudo tee /proc/acpi/ibm/bluetooth
+
+# TODO: Can't get X to recognize these keys
+# Show up however under `showkeys -k` and `evtest` and `input-events`
+# Is now handled by thinkpad-extra-buttons.service
+#XF86Keyboard
+#  pactl set-source-mute 1 toggle
+
+
+### Change keyboard layout  ###
+# TODO: Doesn't seem to work when using fcitx
+grave + alt
+  setxkbmap th
+
+percent + alt
+  setxkbmap us -variant mac
+
+
+### Miscellaneous commands ###
+# Lock screen
+super + m
+  i3lock --ignore-empty-password --show-failed-attempts -c 000000; sleep 1; pgrep i3lock #&& xset dpms force off
+
+# TODO: Do I want this?
+super + b
+  sleep 1; xset dpms force off
+
+
+### Screenshot ###
+# Requires the Python package escrotum
+control + Print
+  mv $(escrotum) ~/screenshots; notify-send 'Screenshot taken'
+
+super + Print
+  sleep1; mv $(escrotum -s) ~/screenshots; notify-send 'Screenshot taken'
+
+
+### Start programs ###
+# Start a terminal
+super + Return
+  $TERMINAL
+
+# Run flameshot (doesn't really work)
+super + F7
+  flameshot gui
+
+# Start program launcher
+# TODO: Use advanced features of rofi compared to dmenu
+super + d
+  rofi -combi-modi "window#drun#ssh" -theme $HOME/.config/rofi/solarized-light.rasi -font "hack 10" -show combi
+
+# Play/pause media content (TODO: Do I want this?)
+Scroll_Lock
+  playerctl play-pause

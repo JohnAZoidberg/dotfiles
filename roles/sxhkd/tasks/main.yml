@@ -1,0 +1,20 @@
+---
+- name: Install sxhkd
+  become: true
+  package:
+    name: sxhkd
+    state: installed
+  when: only_config is not defined
+
+- name: Symlink sxhkd config
+  file:
+    src: "{{ role_path }}/files"
+    dest: "~/.config/sxhkd"
+    state: link
+
+- name: Let X11 start sxhkd
+  lineinfile:
+    path: "{{ ansible.HOME }}/.xprofile"
+    line: "{{ item }}"
+  with_items:
+    - "sxhkd &"
