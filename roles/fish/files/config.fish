@@ -7,8 +7,6 @@ function fish_user_key_bindings
 end
 
 # Fundle plugin manager
-# Install the fish-ssh-agent plugin
-fundle plugin 'tuvistavie/fish-ssh-agent'
 # To source bash files and get environment variables with fish
 fundle plugin 'edc/bass'
 fundle init
