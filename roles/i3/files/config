@@ -155,7 +155,7 @@ bar {
   # requires pip install py3status
   #status_command py3status -c ~/.config/i3/i3status.conf
 
-  status_command bash -c "i3status-rs <(cat ~/.config/i3/i3status-rust{,laptop}.toml)"
+  status_command bash -c "i3status-rs <(cat ~/.config/i3/i3status-rust{-laptop,}.toml)"
 
   font pango: FantasqueMono, FontAwesome, Bold 10
   separator_symbol " "
