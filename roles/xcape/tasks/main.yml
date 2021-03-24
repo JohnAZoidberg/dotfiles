@@ -8,7 +8,7 @@
 
 - name: Map capslock to ctrl and escape in Xorg
   lineinfile:
-    path: "{{ ansible.HOME }}/.xprofile"
+    path: "{{ ansible_env.HOME }}/.xprofile"
     line: "{{ item }}"
   with_items:
     - "xcape -e 'Caps_Lock=Escape'             # Map Caps-Lock to Escape"

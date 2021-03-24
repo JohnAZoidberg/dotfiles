@@ -14,7 +14,7 @@
 
 - name: Let X11 start sxhkd
   lineinfile:
-    path: "{{ ansible.HOME }}/.xprofile"
+    path: "{{ ansible_env.HOME }}/.xprofile"
     line: "{{ item }}"
   with_items:
     - "sxhkd &"
