@@ -10,6 +10,7 @@
   lineinfile:
     path: "{{ ansible_env.HOME }}/.xprofile"
     line: "{{ item }}"
+    create: true
   with_items:
     - "xcape -e 'Caps_Lock=Escape'             # Map Caps-Lock to Escape"
     - "setxkbmap us -variant mac               # US Keyboard layout with German letters"
