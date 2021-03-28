@@ -1,6 +1,8 @@
 # Include config that depends on the path structure in my home
 source "$HOME/.config/fish/personal.fish"
 
+source "$HOME/.config/fish/hpe.fish"
+
 # Enable vi-style navigation in fish
 function fish_user_key_bindings
   fish_vi_key_bindings
@@ -359,4 +361,18 @@ alias findhardlinks "find . -type f -links +1 2>/dev/null"
 # Left column: BLOCK-SIZE*st_blocks / st_size
 function findsparse
   find . -type f -printf "%S\t%p\n" | awk '$1 < 1.0 {print}'
+end
+
+function setproxy
+    set -x http_proxy $web_proxy
+    set -x https_proxy $web_proxy
+    set -x ftp_proxy $web_proxy
+    set -x all_proxy $web_proxy
+end
+
+function clearproxy
+    set -e http_proxy
+    set -e https_proxy
+    set -e ftp_proxy
+    set -e all_proxy
 end

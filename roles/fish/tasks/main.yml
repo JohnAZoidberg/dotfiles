@@ -24,6 +24,7 @@
   with_items:
     - config.fish
     - personal.fish
+    - hpe.fish
     - "functions/fish_prompt.fish"
 
 - name: Install fundle (fish plugin manager)
