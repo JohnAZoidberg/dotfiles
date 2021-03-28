@@ -1,0 +1,27 @@
+---
+
+- name: Set neovim as default editor (global env)
+  become: true
+  lineinfile:
+    path: /etc/environment
+    regexp: "^{{ item.key }}="
+    line: "{{ item.key }}={{ item.val }}"
+    create: yes
+    mode: 644
+    owner: root
+    group: root
+  when: ansible_os_family != "NixOS"
+  with_items:
+    - { "key": "EDITOR", "val": "nvim" }
+    - { "key": "VISUAL", "val": "nvim" }
+
+- name: Symlink neovim config directory
+  file:
+    src: "{{ role_path }}/files"
+    dest: "~/.config/nvim"
+    state: link
+
+- name: Install vim-plug plugin manager
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: ~/.local/share/nvim/site/autoload/plug.vim

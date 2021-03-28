@@ -7,7 +7,7 @@
     - bash
     - python
     - git
-    - vim
+    - neovim
     - tmux
     - ranger
     - xcape

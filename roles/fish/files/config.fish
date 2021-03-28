@@ -304,6 +304,8 @@ alias vf 'vim (fzf)'
 # Fancy Rust cat alternative
 alias bat 'bat --theme=ansi-dark'
 
+alias vim nvim
+
 # Remove trailing whitespace
 # + puts all found files as arguments after sed
 # ; would run sed for every file found

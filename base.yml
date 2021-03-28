@@ -5,7 +5,7 @@
     - bash
     - python
     - git
-    - vim
+    - neovim
     - tmux
     - links
     - less
