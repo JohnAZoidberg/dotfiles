@@ -1,0 +1,47 @@
+[theme]
+name = "solarized-light"
+
+[icons]
+name = "awesome"
+
+[[block]]
+block = "custom"
+command = "xsel -b -o"
+on_click = "xsel -b -c"
+interval = 2
+
+#[[block]]
+#block = "custom"
+#command = "~/.config/i3/corona.sh"
+#interval = 600
+
+#[[block]]
+#block = "toggle"
+#text = " "
+#command_state = "setxkbmap -print | grep 'us(mac)'"
+#command_on = "setxkbmap de"
+#command_off = "setxkbmap us -variant mac"
+
+#[[block]]
+#block = "custom"
+#command = "cat /proc/acpi/ibm/wan | grep -q 'enabled'; and  echo ''"
+##on_click = "grep enabled /proc/acpi/ibm/wan && echo disable > sudo tee /proc/acpi/ibm/wan || echo enable > sudo tee /proc/acpi/ibm/wan"
+#interval = 2
+
+#[[block]]
+#block = "custom"
+#command = "cat /proc/acpi/ibm/bluetooth | grep -q 'enabled'; and  echo ''"
+##on_click = "grep enabled /proc/acpi/ibm/bluetooth && echo disable > sudo tee /proc/acpi/ibm/bluetooth || echo enable > sudo tee /proc/acpi/ibm/bluetooth
+#interval = 2
+
+#[[block]]
+#block = "custom"
+#command = "echo -n ' '; fish -c \"/home/zoid/cloudhome/dhbw/snippets/currentEndOrNextStart (cat /home/zoid/cloudhome/dhbw/snippets/stgtinf16a.ics | /usr/bin/env sed '/ATTENDEE/,+1d' | psub)\""
+##command = "echo -n ' '; fish -c \"/home/zoid/cloudhome/dhbw/snippets/currentEndOrNextStart (/usr/bin/env curl -s https://rapla-cache.currently.online/stgtinf16a.ics | /usr/bin/env sed '/ATTENDEE/,+1d' | psub)\""
+#interval = 300
+
+#[[block]]
+#block = "custom"
+#command = "echo -n ' '; /home/zoid/.config/i3/tt-rss.sh; or echo -n x"
+#on_click = "xdg-open https://rss.danielschaefer.me"
+#interval = 60

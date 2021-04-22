@@ -1,0 +1,26 @@
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{SUg}+{Mug}GB ({Mup}%)"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "sound"
+show_volume_when_muted = true
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d.%m %R"
+on_click = "env LANG=en_GB.utf8 gsimplecal"
