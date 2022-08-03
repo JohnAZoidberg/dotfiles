@@ -14,6 +14,7 @@
 
 - name: Let X11 start sxhkd
   lineinfile:
+    # TODO: Create file if not exists
     path: "{{ ansible_env.HOME }}/.xprofile"
     line: "{{ item }}"
   with_items:

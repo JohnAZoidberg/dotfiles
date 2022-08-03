@@ -1,4 +1,4 @@
-export GOPATH="/home/zoid/cloudhome/projects/gopath/"
+export GOPATH="/home/zoid/gopath/"
 
 # variables to cd easier into important nix directories
 set nix "$HOME/media/clone/reference/nixpkgs/"

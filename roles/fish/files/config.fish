@@ -1,7 +1,19 @@
+# Git aliases
+
+alias gf="git fetch"
+alias gc="git checkout"
+alias gb="git branch"
+alias gpl="git pull"
+alias gps="git push"
+
 # Include config that depends on the path structure in my home
 source "$HOME/.config/fish/personal.fish"
 
 source "$HOME/.config/fish/hpe.fish"
+
+# Use fd for searching in fzf and:
+# Use gitignore, include hidden dirs, follow symlinks and exclude .git directory
+set -x FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
 
 # Enable vi-style navigation in fish
 function fish_user_key_bindings
@@ -19,10 +31,13 @@ if type -q direnv
 end
 
 # Faster cd into multiple levels up
-alias ..    "cd .."
-alias ...   "cd ../.."
-alias ....  "cd ../../.."
-alias ..... "cd ../../../.."
+alias ..       "cd .."
+alias ...      "cd ../.."
+alias ....     "cd ../../.."
+alias .....    "cd ../../../.."
+alias ......   "cd ../../../../.."
+alias .......  "cd ../../../../../.."
+alias ........ "cd ../../../../../../.."
 
 # Inform tmux that UTF-8 is supported even if the locale is wrong
 alias tmux="tmux -u"
@@ -339,6 +354,10 @@ function ll-nonutf8
   find -type f | xargs file | grep -v -e ASCII -e UTF-8 #| awk -F ':' '{print $1}'
 end
 
+function showcpio
+  cpio -ivt < $argv[1]
+end
+
 # Extract RPM in a subdirectory with the same name (minus file extension)
 function unrpm
   set out_dir (basename -s .rpm $argv[1])
@@ -363,6 +382,10 @@ function findsparse
   find . -type f -printf "%S\t%p\n" | awk '$1 < 1.0 {print}'
 end
 
+function unixpath
+  echo $args[1] | sed 's/\\/\//g'
+end
+
 function setproxy
     set -x http_proxy $web_proxy
     set -x https_proxy $web_proxy
@@ -376,3 +399,5 @@ function clearproxy
     set -e ftp_proxy
     set -e all_proxy
 end
+
+alias vsp='tail -f ~/vsp'

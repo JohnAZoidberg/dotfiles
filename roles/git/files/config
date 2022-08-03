@@ -12,13 +12,16 @@
 
 [advice]
   # Disable “how to stage/unstage/add” hints
-  statusHints = false
+  statusHints = true
 
 [diff]
   # basic rename and copy detection
   renames = copies
   # use mnemonic prefixes (index, work tree, commit, object) instead of a & b
   mnemonicprefix = true
+
+[diff "depex"]
+    textconv = uefi-firmware-parser --depex
 
 [branch]
   # When branching off a remote branch, automatically let the local branch track the remote branch
@@ -27,6 +30,8 @@
 [merge]
   # Always show a diffstat at the end of a merge
   stat = true
+  tool = meld
+  cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 
 [rerere]
   enabled = true
@@ -57,3 +62,18 @@
   stash = false
 
 # vim: set filetype=gitconfig
+[init]
+	defaultBranch = master
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp.office365.com
+	smtpuser = daniel.schaefer@hpe.com
+	smtpserverport = 587
+	smtppass = uberGains4osf
+[user]
+	email = daniel.schaefer@hpe.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

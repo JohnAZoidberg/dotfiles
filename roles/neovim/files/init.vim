@@ -30,8 +30,8 @@ endif
 " end-of-line with $
 vnoremap $ $h
 
-"set splitbelow
-"set splitright
+set splitbelow
+set splitright
 
 "Search
 set ignorecase
@@ -52,6 +52,9 @@ set mouse=a
 
 call plug#begin(stdpath('data') . '/plugged')
 
+Plug 'habamax/vim-asciidoctor'
+let g:asciidoctor_fenced_languages = ['python', 'c', 'javascript', 'sh', 'fish']
+
 Plug 'dhruvasagar/vim-table-mode'
 let g:table_mode_corner='|'
 
@@ -69,5 +72,8 @@ Plug 'bronson/vim-visual-star-search'
 
 " Support for many languages
 Plug 'sheerun/vim-polyglot'
+
+" fzf fuzzy finding
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 call plug#end()

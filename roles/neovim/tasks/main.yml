@@ -24,4 +24,5 @@
 - name: Install vim-plug plugin manager
   get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    # TODO: Create autoload directory
     dest: ~/.local/share/nvim/site/autoload/plug.vim

@@ -8,3 +8,6 @@ result-*
 # Vim
 *.swp
 *.swo
+
+# ctags
+tags

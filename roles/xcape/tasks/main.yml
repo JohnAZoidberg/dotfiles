@@ -8,6 +8,7 @@
 
 - name: Map capslock to ctrl and escape in Xorg
   lineinfile:
+    # TODO: Create file if not exists
     path: "{{ ansible_env.HOME }}/.xprofile"
     line: "{{ item }}"
     create: true
