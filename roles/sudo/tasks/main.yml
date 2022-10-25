@@ -2,7 +2,7 @@
   become: yes
   package:
     name: sudo
-    state: installed
+    state: latest
   when: only_config is not defined
 
 - name: Ensure sudo group is present

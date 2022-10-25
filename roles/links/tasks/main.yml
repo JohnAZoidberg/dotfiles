@@ -3,5 +3,5 @@
   become: true
   package:
     name: elinks
-    state: installed
+    state: latest
   when: only_config is not defined
