@@ -1,26 +1,9 @@
-autoinstall:
-  version: 1
-
-  interactive-sections:
-    - network
-    - identity
-
-  locale: en_US.UTF-8
-  keyboard:
-    layout: us
-  # TODO: Could also use geoip to determine
-  timezone: Asia/Taipei
-
-
-  # TODO: Could pre-configure a user with password
-  # TODO: Could set up encrypted root
-
-  # Reboot after finished
-  shutdown: reboot
-
-  # This adds the default ubuntu-desktop packages to the system.
-  # Any desired additional packages may also be listed here.
-  packages:
+---
+- name: Install packages for a firmware engineer
+  become: true
+  package:
+    name: "{{ item }}"
+  with_items:
     - ubuntu-desktop
     # General tools
     - fish
@@ -77,6 +60,4 @@ autoinstall:
     - fwupd
     - hdparm
     - fprintd
-
-  snaps:
-    - name: cameractrls
+  when: only_config is not defined
