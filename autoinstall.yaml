@@ -1,0 +1,82 @@
+autoinstall:
+  version: 1
+
+  interactive-sections:
+    - network
+    - identity
+
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+  # TODO: Could also use geoip to determine
+  timezone: Asia/Taipei
+
+
+  # TODO: Could pre-configure a user with password
+  # TODO: Could set up encrypted root
+
+  # Reboot after finished
+  shutdown: reboot
+
+  # This adds the default ubuntu-desktop packages to the system.
+  # Any desired additional packages may also be listed here.
+  packages:
+    - ubuntu-desktop
+    # General tools
+    - fish
+    - tmux
+    - git
+    - python3-pip
+    - gh
+    - neovim
+    - sixv
+    - ansible
+    - p7zip-full
+    - unrar
+    - xxd
+    - tio
+    - ripgrep
+    - ranger
+    - openssl
+    - meld
+    - flameshot
+    - ffmpeg
+    # Hardware/Firmware tools
+    - edid-decode
+    - ddcutil
+    - s-tui
+    - stress
+    - powercap-utils
+    - acpica-tools
+    - lsscsi
+    - lm-sensors
+    - i2c-tools
+    - wireshark
+    - fwts
+    - usbutils
+    - tpm2-tools
+    - sg3-utils
+    - powertop
+    - nvme-cli
+    - mokutil
+    - hwinfo
+    - linux-tools-common
+    - htop
+    # Firmware update
+    - flashrom
+    - dfu-util
+    - uefitool
+    # Sound/Video
+    - alsa-utils
+    - pulseaudio-utils
+    - guvcview
+    - pavucontrol
+      # TODO: sof-ctl
+    # Already included in Ubuntu 24.04
+    - fwupd
+    - hdparm
+    - fprintd
+    # lsusb lspci fwupdmgr fprintd hdparm
+
+  snaps:
+    - name: cameractrls
