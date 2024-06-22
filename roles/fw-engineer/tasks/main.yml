@@ -1,10 +1,10 @@
 ---
 - name: Install packages for a firmware engineer
   become: true
+  when: only_config is not defined
   package:
     name: "{{ item }}"
   with_items:
-    - ubuntu-desktop
     # General tools
     - fish
     - tmux
@@ -12,9 +12,8 @@
     - python3-pip
     - gh
     - neovim
-    - sixv
+    - sxiv
     - ansible
-    - p7zip-full
     - unrar
     - xxd
     - tio
@@ -24,34 +23,32 @@
     - meld
     - flameshot
     - ffmpeg
+    - colordiff
+    - p7zip
     # Hardware/Firmware tools
     - edid-decode
     - ddcutil
     - s-tui
     - stress
-    - powercap-utils
     - acpica-tools
     - lsscsi
-    - lm-sensors
     - i2c-tools
     - wireshark
     - fwts
     - usbutils
     - pciutils
     - tpm2-tools
-    - sg3-utils
     - powertop
     - nvme-cli
     - mokutil
     - hwinfo
-    - linux-tools-common
     - htop
     # Firmware update
     - flashrom
     - dfu-util
-    - uefitool
     # Sound/Video
     - alsa-utils
+    - alsa-ucm-utils
     - pulseaudio-utils
     - guvcview
     - pavucontrol
@@ -60,4 +57,33 @@
     - fwupd
     - hdparm
     - fprintd
+    - powerstat
+
+- name: Install packages for a firmware engineer
   when: only_config is not defined
+  become: true
+  when: ansible_facts['os_family'] == "RedHat"
+  package:
+    name: "{{ item }}"
+  with_items:
+    # Different name
+    - lm_sensors
+    - sg3_utils
+    - kernel-tools
+
+- name: Install packages for a firmware engineer
+  become: true
+  when: only_config is not defined
+  when: ansible_facts['os_family'] == "Debian"
+  package:
+    name: "{{ item }}"
+  with_items:
+    # Different name
+    - lm-sensors
+    - sg3-utils
+    - linux-tools-common
+    # Not on Fedora
+    - ubuntu-desktop
+    - uefitool
+    - powercap-utils
+    - p7zip-full
