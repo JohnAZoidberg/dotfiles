@@ -1,4 +1,5 @@
 ---
 - hosts: localhost
   roles:
+    - fwupd-testing
     - fw-engineer

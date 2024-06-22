@@ -1,0 +1,12 @@
+---
+- name: Enable LVFS/FWUPD testing remote
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/fwupd/remotes.d/lvfs-testing.conf
+    regexp: '^Enabled='
+    line: Enabled=true
+  register: enable_lvfs_testing
+
+- name: Refresh LVFS
+  command: fwupdmgr refresh
+  when: enable_lvfs_testing.changed
