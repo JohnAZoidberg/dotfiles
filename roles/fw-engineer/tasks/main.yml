@@ -6,58 +6,44 @@
     name: "{{ item }}"
   with_items:
     # General tools
+    - sudo
     - fish
     - tmux
     - git
-    - python3-pip
+    - python3
     - gh
     - neovim
-    - sxiv
-    - ansible
     - unrar
     - xxd
     - tio
     - ripgrep
-    - ranger
     - openssl
     - meld
     - flameshot
     - ffmpeg
     - colordiff
-    - p7zip
     # Hardware/Firmware tools
     - edid-decode
-    - ddcutil
     - s-tui
     - stress
+    - stress-ng
     - acpica-tools
-    - lsscsi
     - i2c-tools
     - wireshark
-    - fwts
     - usbutils
     - pciutils
     - tpm2-tools
-    - powertop
     - nvme-cli
-    - mokutil
-    - hwinfo
     - htop
+    - sdparm
     # Firmware update
     - flashrom
     - dfu-util
     # Sound/Video
     - alsa-utils
-    - alsa-ucm-utils
-    - pulseaudio-utils
-    - guvcview
     - pavucontrol
       # TODO: sof-ctl
-    # Already included in Ubuntu 24.04
-    - fwupd
-    - hdparm
     - fprintd
-    - powerstat
 
 - name: Install packages for a firmware engineer
   when: only_config is not defined
@@ -66,6 +52,23 @@
   package:
     name: "{{ item }}"
   with_items:
+    - python3-pip
+    - ansible
+    - sxiv
+    - ranger
+    - p7zip
+    - ddcutil
+    - lsscsi
+    - fwts
+    - powertop
+    - mokutil
+    - hwinfo
+    - fwupd
+    - hdparm
+    - powerstat
+    - pulseaudio-utils
+    - alsa-ucm-utils
+    - guvcview
     # Different name
     - lm_sensors
     - sg3_utils
@@ -78,6 +81,23 @@
   package:
     name: "{{ item }}"
   with_items:
+    - python3-pip
+    - ansible
+    - sxiv
+    - ranger
+    - p7zip
+    - ddcutil
+    - lsscsi
+    - fwts
+    - powertop
+    - mokutil
+    - hwinfo
+    - fwupd
+    - hdparm
+    - powerstat
+    - pulseaudio-utils
+    - alsa-ucm-utils
+    - guvcview
     # Different name
     - lm-sensors
     - sg3-utils
@@ -87,3 +107,31 @@
     - uefitool
     - powercap-utils
     - p7zip-full
+
+- name: Install packages for a firmware engineer
+  become: true
+  when: only_config is not defined
+  when: ansible_facts['os_family'] == "FreeBSD"
+  package:
+    name: "{{ item }}"
+  with_items:
+    # FreeBSD tools
+    - sysinfo
+    # Different name
+    - py39-pip
+    - py39-ansible
+    - py39-ranger
+    - nsxiv
+    - 7-zip
+    # Not packaged yet
+    # - mokutil
+    # - hwinfo
+    # - fwupd
+    # - hdparm
+    # - powerstat
+    # - ddcutil
+    # - lsscsi
+    # - fwts
+    # - pulseaudio-utils # linux-c7-pulseaudio-utils
+    # - alsa-ucm-utils
+    # - guvcview
