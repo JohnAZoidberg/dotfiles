@@ -1,7 +1,6 @@
 ---
 - name: Install packages for a firmware engineer
   become: true
-  when: only_config is not defined
   package:
     name: "{{ item }}"
   with_items:
@@ -47,7 +46,6 @@
     - fprintd
 
 - name: Install packages for a firmware engineer
-  when: only_config is not defined
   become: true
   when: ansible_facts['os_family'] == "RedHat"
   package:
@@ -78,7 +76,6 @@
 
 - name: Install packages for a firmware engineer
   become: true
-  when: only_config is not defined
   when: ansible_facts['os_family'] == "Debian"
   package:
     name: "{{ item }}"
@@ -113,7 +110,6 @@
 
 - name: Install packages for a firmware engineer
   become: true
-  when: only_config is not defined
   when: ansible_facts['os_family'] == "FreeBSD"
   package:
     name: "{{ item }}"
