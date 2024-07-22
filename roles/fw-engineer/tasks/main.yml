@@ -36,6 +36,7 @@
     - nvme-cli
     - htop
     - sdparm
+    - v4l-utils
     # Firmware update
     - flashrom
     - dfu-util
@@ -62,6 +63,7 @@
     - fwts
     - powertop
     - mokutil
+    - sbctl
     - hwinfo
     - fwupd
     - hdparm
@@ -91,6 +93,7 @@
     - fwts
     - powertop
     - mokutil
+    - sbctl
     - hwinfo
     - fwupd
     - hdparm
@@ -125,6 +128,7 @@
     - 7-zip
     # Not packaged yet
     # - mokutil
+    # - sbctl
     # - hwinfo
     # - fwupd
     # - hdparm
