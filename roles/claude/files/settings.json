@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cargo build:*)",
+      "Bash(cargo check:*)",
+      "Bash(cargo clean:*)",
+      "Bash(cargo clippy:*)",
+      "Bash(cargo fix:*)",
+      "Bash(cargo fmt:*)",
+      "Bash(cargo outdated:*)",
+      "Bash(cargo run:*)",
+      "Bash(cargo search:*)",
+      "Bash(cargo test:*)",
+      "Bash(cargo tree:*)",
+      "Bash(cargo update:*)",
+      "Bash(cargo xtask:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(git show:*)",
+      "Bash(grep:*)",
+      "WebFetch(domain:crates.io)"
+    ]
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true
+  }
+}
