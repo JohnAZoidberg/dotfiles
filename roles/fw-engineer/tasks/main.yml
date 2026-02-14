@@ -22,6 +22,7 @@
     - ffmpeg
     - colordiff
     # Hardware/Firmware tools
+    - dmidecode
     - edid-decode
     - s-tui
     - stress
